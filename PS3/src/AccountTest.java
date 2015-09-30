@@ -19,13 +19,12 @@ Account acc;
 	@Test
 	public void testDeposit() {
 		acc.deposit(500);
-		assertTrue("the balance is not equal to 500.00", acc.getBalance()==20500.00);
+		assertTrue("the balance is not correct after the deposit", acc.getBalance()==20500.00);
 	}
 	@Test (expected = InsufficientFundsException.class)
 	public final void testWithdraw() throws InsufficientFundsException {
-			acc.deposit(500.00);
-			assertEquals("$400.00 expected, actual is $500.00", (double)acc.getBalance(), (long) 500.00);
 		acc.withdraw(900);
+		assertEquals("Not the expected balance after the withdrawl", (long)acc.getBalance(), (long) 19100);
+		acc.withdraw(90000);
 	}
-	
 }

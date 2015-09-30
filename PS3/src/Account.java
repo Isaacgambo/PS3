@@ -56,8 +56,13 @@ public class Account {
 		return annualIntrestRate / 12;
 	}
 
-	public void withdraw(double amount) {
-		balance = balance - amount;
+	public void withdraw(double amount) throws InsufficientFundsException {
+		if (amount <= balance){
+			balance = balance - amount;
+		} else {
+			double needs = amount - balance;
+			throw new InsufficientFundsException(needs);
+		}
 	}
 
 	public void deposit (double amount)
